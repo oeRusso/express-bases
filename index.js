@@ -1,3 +1,32 @@
+
+const express = require ('express');
+
+const app = express();
+
+app.get('/', (req, res) => {
+    res.send('Hello world!')
+})
+
+
+app.get('/miarchivo', (req, res) => {
+    res.sendFile('./mifoto.jpg',{
+        root: __dirname
+    })
+})
+
+app.get('/user', (req, res) => {
+    res.json({"nombre":"esteban"})
+})
+
+
+app.listen(3000);
+console.log(`server on port ${3000}`);
+
+
+
+
+
+
 // const http = require ('http');
 // const fs = require('fs');
 
@@ -9,25 +38,41 @@
 // server.listen(3000)
 // console.log(`server on port ${3000}`);
 
-const express = require ('express');
 
-const app = express();
+// RUTAS
+// app.get('/products', (req, res) => {
+    // validar datos
+    // query o database
+    // process data
 
-app.get('/', (req, res) => {
-    res.send('Hello world!')
-})
 
-app.get('/about', (req, res) => {
-    res.send('About')
-})
+    // res.send('Lista de productos')
+// })
 
-app.get('/weather', (req, res) => {
-    res.send('the current weather is nice')
-})
+// app.post('/products', (req, res) => {
+//     res.send('Creando Productos')
+// })
 
-app.use((req, res) => {
-    res.status(404).send('not found your page')
-})
+// app.put('/products', (req, res) => {
+//     res.send('Actualizando Productos')
+// })
 
-app.listen(3000);
-console.log(`server on port ${3000}`);
+// app.delete('/products', (req, res) => {
+//     res.send('Eliminando Productos')
+// })
+
+// app.patch('/products', (req, res) => {
+//     res.send('Actualizando una parte del Producto')
+// })
+
+// app.get('/about', (req, res) => {
+//     res.send('About')
+// })
+
+// app.get('/weather', (req, res) => {
+//     res.send('the current weather is nice')
+// })
+
+// app.use((req, res) => {
+//     res.status(404).send('not found your page')
+// })

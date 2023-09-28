@@ -1,1 +1,1 @@
-min 36
+min 1hs
