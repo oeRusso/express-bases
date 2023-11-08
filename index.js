@@ -3,21 +3,50 @@ const express = require ('express');
 
 const app = express();
 
-app.get('/', (req, res) => {
-    res.send('Hello world!')
+app.use(express.text());
+app.use(express.json());
+
+// app.get('/', (req, res) => {
+//     res.send('Hello world!')
+// })
+
+
+// app.get('/miarchivo', (req, res) => {
+//     res.sendFile('./mifoto.jpg',{
+//         root: __dirname
+//     })
+// })
+
+// app.get('/user', (req, res) => {
+//     res.json({"nombre":"esteban"})
+// })
+
+app.get('/hello/:user', (req, res) => {
+   
+    res.send(req.params.user)
+})
+
+app.get('/add/:x/:y', (req, res) => {
+   const {x,y} = req.params;
+    res.send(`Result: ${parseInt(x) + parseInt(y)}`);
+    
 })
 
 
-app.get('/miarchivo', (req, res) => {
-    res.sendFile('./mifoto.jpg',{
-        root: __dirname
-    })
-})
+app.get('/user/:username/photo', (req, res) => {
+    if (req.params.username === 'esteban') {
+        return res.sendFile('./mifoto.jpg',{
+            root: __dirname
+        })
+    }
 
-app.get('/user', (req, res) => {
-    res.json({"nombre":"esteban"})
-})
+    res.send('el usuario no tiene acceso')    
+ })
 
+ app.get('/name/:nombre/age/:age', (req, res) => {
+   res.send(` El usuario es ${req.params.nombre} y tiene ${req.params.age} años de edad`)
+     
+ })
 
 app.listen(3000);
 console.log(`server on port ${3000}`);
