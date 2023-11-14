@@ -6,6 +6,14 @@ const app = express();
 app.use(express.text());
 app.use(express.json());
 
+app.get('/profile', (req, res) => {
+    res.send('Hello world!')
+})
+
+
+app.listen(3000);
+console.log(`server on port ${3000}`);
+
 // app.get('/', (req, res) => {
 //     res.send('Hello world!')
 // })
@@ -21,35 +29,40 @@ app.use(express.json());
 //     res.json({"nombre":"esteban"})
 // })
 
-app.get('/hello/:user', (req, res) => {
-   
-    res.send(req.params.user)
-})
 
-app.get('/add/:x/:y', (req, res) => {
-   const {x,y} = req.params;
-    res.send(`Result: ${parseInt(x) + parseInt(y)}`);
+// app.get('/search', (req, res) => {
+//     console.log(req.query)
+//     if(req.query.q === 'javascript book'){
+//         res.send('Lista de libros de js')
+
+//     }else{
+//         res.send('pagina normal');
+//     }
+//  })
+
+// app.get('/add/:x/:y', (req, res) => {
+//    const {x,y} = req.params;
+//     res.send(`Result: ${parseInt(x) + parseInt(y)}`);
     
-})
+// })
 
 
-app.get('/user/:username/photo', (req, res) => {
-    if (req.params.username === 'esteban') {
-        return res.sendFile('./mifoto.jpg',{
-            root: __dirname
-        })
-    }
+// app.get('/user/:username/photo', (req, res) => {
+//     if (req.params.username === 'esteban') {
+//         return res.sendFile('./mifoto.jpg',{
+//             root: __dirname
+//         })
+//     }
 
-    res.send('el usuario no tiene acceso')    
- })
+//     res.send('el usuario no tiene acceso')    
+//  })
 
- app.get('/name/:nombre/age/:age', (req, res) => {
-   res.send(` El usuario es ${req.params.nombre} y tiene ${req.params.age} años de edad`)
+//  app.get('/name/:nombre/age/:age', (req, res) => {
+//    res.send(` El usuario es ${req.params.nombre} y tiene ${req.params.age} años de edad`)
      
- })
+//  })
 
-app.listen(3000);
-console.log(`server on port ${3000}`);
+
 
 
 
