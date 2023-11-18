@@ -1,18 +1,20 @@
 
 const express = require ('express');
+const morgan = require('morgan')
 
 const app = express();
 
-app.use(express.text());
-app.use(express.json());
+
+app.use(morgan('dev'));
+
 
 app.get('/profile', (req, res) => {
     res.send('Hello world!')
 })
 
 
-app.listen(3000);
-console.log(`server on port ${3000}`);
+app.listen(3002);
+console.log(`server on port ${3002}`);
 
 // app.get('/', (req, res) => {
 //     res.send('Hello world!')
